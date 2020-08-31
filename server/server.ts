@@ -51,12 +51,15 @@ app.get("/gurl", async (_request, response, next) => {
   }
 });
 
+/*
+ * Fetch ten most 
+ */
 app.get("/events", async (_request, response, next) => {
   try {
     const calendar = google.calendar({ version: "v3", auth });
 
     const calendarResponse = await calendar.events.list({
-      calendarId: "eetu.nuorva@city.fi",
+      calendarId: "primary",
       timeMin: new Date().toISOString(),
       maxResults: 10,
       singleEvents: true,
