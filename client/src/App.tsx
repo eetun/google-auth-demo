@@ -108,7 +108,7 @@ export default class App extends React.Component<Props, State> {
         {events && (
           <ul>
             {events.map((event) => (
-              <li>
+              <li key={event.id}>
                 <span>{new Date(event.start.dateTime).toLocaleString()}</span>
                 {event.summary}
               </li>
