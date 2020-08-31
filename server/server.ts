@@ -36,6 +36,9 @@ app.locals.database = {
   refresh_token: "",
 };
 
+/*
+ * Generate and get Google OAuth 2.0 login URL
+ */
 app.get("/gurl", async (_request, response, next) => {
   try {
     const url = auth.generateAuthUrl({
@@ -52,7 +55,7 @@ app.get("/gurl", async (_request, response, next) => {
 });
 
 /*
- * Fetch ten most 
+ * Fetch ten most recent events from user's primary calendar
  */
 app.get("/events", async (_request, response, next) => {
   try {
@@ -73,6 +76,12 @@ app.get("/events", async (_request, response, next) => {
   }
 });
 
+/*
+ * Handle the login e.g:
+ * 1. Trade the authorization code for ID token, access token and refresh token
+ * 2. Verify the ID token with Google
+ * 3. Return the payload to the client
+ */
 app.post("/glogin", async (request, response, next) => {
   try {
     const code = request.body.code;
